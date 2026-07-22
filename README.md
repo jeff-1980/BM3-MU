@@ -102,6 +102,16 @@ snapshots (~1.7 GB across the full experimental tree) — those are regenerable
 by rerunning the corresponding `experiments/` script against the public
 datasets above, but are too large to distribute here.
 
+The six `*_newseed` directories (`exp_mext_e13_1dcnn_xjtu_cross_newseed`,
+`exp_e1b_xjtu_cross_dual_cnn_newseed`, `exp_e1b_xjtu_cross_single_bm2_newseed`,
+`exp_e1_xjtu_cross_dual_bm2_newseed`, `exp_xjtu_cross_nokin_newseed`,
+`exp_xjtu_cross_dual_nokin_newseed`) are the seeds-5/6/7 stress-test extension
+for the E1b XJTU-SY cross-condition experiment (pre-registered in
+`prereg_e1b_n8.md`); merged with the original seeds 0-4 they are the direct
+source of the manuscript's n=8 numbers in Table `tab:e1b_backbone_agnostic`
+(the three-backbone fusion-gain significance test) and the regime-selection
+table (dual-BM2 vs. dual-BM3 on XJTU-SY).
+
 Pointers from paper section to artifact (non-exhaustive; every number in the
 paper traces back to a `summary.json` in this tree):
 

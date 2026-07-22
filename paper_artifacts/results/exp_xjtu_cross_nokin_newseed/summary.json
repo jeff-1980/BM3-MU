@@ -1,0 +1,26 @@
+{
+  "mode": "cross",
+  "config": "exp_xjtu_cross_nokin_newseed",
+  "lambda_kin": 0.0,
+  "train_condition": "37.5Hz11kN",
+  "test_condition": "40Hz10kN",
+  "seeds": [
+    5,
+    6,
+    7
+  ],
+  "macro_f1s": [
+    0.7307710296241823,
+    0.8960210747387798,
+    0.7583482598092238
+  ],
+  "macro_recalls": [
+    0.7084315173222738,
+    0.8712729357798166,
+    0.7322247706422018
+  ],
+  "mean_macro_f1": 0.7950467880573954,
+  "std_macro_f1": 0.08852672384246753,
+  "mean_macro_recall": 0.7706430745814309,
+  "std_macro_recall": 0.08795627578229631
+}

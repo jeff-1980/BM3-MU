@@ -1,0 +1,15 @@
+{
+  "fold_tag": "cross_seed6",
+  "seed": 6,
+  "best_macro_recall": 0.5117545871559633,
+  "best_macro_f1": 0.4252192163744157,
+  "best_per_class_recall": [
+    1.0,
+    0.023509174311926607
+  ],
+  "elapsed_s": 85.55608582496643,
+  "train_class_counts": [
+    4624,
+    624
+  ]
+}
