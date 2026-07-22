@@ -1,0 +1,44 @@
+name: exp_e1b_xjtu_cross_single_bm2_newseed
+mode: cross
+backbone: mamba2
+# ⚠️ requires experiments/exp_xjtu/train.py::build_model mamba2 dispatch patch
+# (already applied for xjtu_cross_dual_bm2, same task) — no code change needed here.
+# 逐字仿 experiments/exp_e1_dual_baselines/xjtu_cross_dual_bm2/config_cross_dual_bm2.yaml；
+# 唯一改动 = n_sensors: 2 -> 1（单通道，horizontal only）。
+
+# ── data ──────────────────────────────────────────────────────────
+data_root: ~/data_xjtu/XJTU-SY_Bearing_Datasets
+train_condition: "37.5Hz11kN"   # Cond2: 2250rpm
+test_condition:  "40Hz10kN"     # Cond3: 2400rpm
+window_size: 2048
+n_sensors: 1          # horizontal only (single-channel)
+# ⚠️ Cond2 OR:IR ≈ 7.4:1 → DataLoader uses WeightedRandomSampler
+
+# ── model ─────────────────────────────────────────────────────────
+d_model: 64
+d_state: 128
+n_layers: 4
+n_classes: 2          # OR=0, IR=1
+conv_stride: 2
+
+# ── training ──────────────────────────────────────────────────────
+batch_size: 64
+num_workers: 4
+epochs: 50
+lr: 3.0e-4
+weight_decay: 1.0e-4
+grad_clip: 1.0
+scheduler: cosine
+
+# ── loss ──────────────────────────────────────────────────────────
+# Mamba-2 无 RoPE/theta/DT 激活，L_kin 架构不支持（D19）；
+# exp_xjtu/train.py L202: do_kin 排除 mamba2 — 因此本臂只跑 nokin。
+lambda_kin: 0.0
+kin_variant: cover
+
+# ── ⚠️ XJTU fs_eff assert (D26 mandatory) ─────────────────────────
+fs_eff: 12800.0
+
+# ── experiment ────────────────────────────────────────────────────
+seeds: [5, 6, 7]
+results_dir: results/exp_e1b_xjtu_cross_single_bm2_newseed

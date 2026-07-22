@@ -16,6 +16,8 @@ paper_artifacts/  aggregated results (summary.json / CSV / figures) underlying e
                   table and figure in the paper — see "Paper artifacts" below
 requirements.txt  core dependencies to install
 requirements-freeze.txt   full pinned environment (177 packages) for exact reproduction
+prereg_e1b_n8.md  pre-registration for the E1b n=8 stress-test extension (locked
+                  before that run started; cited by name in the manuscript)
 ```
 
 Raw training logs, per-seed checkpoints, and the full experimental result tree
@@ -112,7 +114,8 @@ paper traces back to a `summary.json` in this tree):
 | CWRU pink-noise check (E5) | `paper_artifacts/results/exp_e5_{single,dual}_pink_snr*/summary.json` |
 | XJTU-SY LOBO / cross-condition (leakage-free) | `paper_artifacts/results/e3_lobo_leakfree_20260709-205255/*/summary.json` |
 | XJTU-SY LOBO / cross-condition (original protocol, superseded) | `paper_artifacts/results/exp_xjtu_{lobo,cross}*_{nokin,kin}/summary.json` |
-| Three-backbone OOD fusion gain (E1b) | `paper_artifacts/results/e1_dual_baselines_20260709-1052/`, `e1b_fillcells_20260709-1515/`, `e1_comparison_20260709-1431/e1_comparison.md` |
+| Three-backbone OOD fusion gain (E1b, original $n=5$) | `paper_artifacts/results/e1_dual_baselines_20260709-1052/`, `e1b_fillcells_20260709-1515/`, `e1_comparison_20260709-1431/e1_comparison.md` |
+| Three-backbone OOD fusion gain (E1b, $n=8$ stress-test extension — current headline numbers in the paper) | `prereg_e1b_n8.md` (pre-registration); `paper_artifacts/results/{exp_mext_e13_1dcnn_xjtu_cross,exp_e1b_xjtu_cross_dual_cnn,exp_e1b_xjtu_cross_single_bm2,exp_e1_xjtu_cross_dual_bm2,exp_xjtu_cross_nokin,exp_xjtu_cross_dual_nokin}_newseed/summary.json` (seeds 5-7, merge with the $n=5$ row above by seed id); `experiments/exp_e1_dual_baselines/run_e1b_n8.sh` + `analyze_e1b_n8.py` reproduce the run and the merge/Wilcoxon analysis end to end |
 | BatchNorm/LayerNorm ablations (Phase 2/2b, CNN-LN) | `paper_artifacts/results/exp_mext_e2{1,1b,2,3}_*/summary.json`, `e2_cnn_ln_20260709-1723/` |
 | 1D-CNN OOD stress test (Phase 1) | `paper_artifacts/results/exp_mext_e1{1,2,3,4}_*/summary.json` |
 | Channel-coherence mechanism analysis (A1) | `paper_artifacts/results/a1_coherence_20260708-2358/` (`a1_summary.md`, per-cell CSVs, `run_a1_coherence.py`) |
