@@ -1,0 +1,20 @@
+{
+  "config": "config_snr-6.yaml",
+  "backbone": "mamba3",
+  "lambda_kin": 0.01,
+  "noise_snr_db": -6.0,
+  "noise_type": "awgn",
+  "label_mode": "4class",
+  "seeds": [
+    5,
+    6,
+    7
+  ],
+  "best_val_accs": [
+    0.9490229396771452,
+    0.9413763806287171,
+    0.9303313508920985
+  ],
+  "mean_best_val_acc": 0.9402435570659868,
+  "std_best_val_acc": 0.009397145297670386
+}

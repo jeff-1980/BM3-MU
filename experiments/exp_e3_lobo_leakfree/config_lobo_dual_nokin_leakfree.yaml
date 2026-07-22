@@ -1,0 +1,36 @@
+name: e3_lobo_dual_nokin_leakfree
+mode: lobo
+selection_mode: fixed_epoch   # P1: zero test-fold-based epoch selection
+save_checkpoint: true         # P3: one-time checkpoint infra investment
+
+# ── data ──────────────────────────────────────────────────────────
+data_root: ~/data_xjtu/XJTU-SY_Bearing_Datasets
+window_size: 2048
+n_sensors: 2          # horizontal + vertical
+
+# ── model ─────────────────────────────────────────────────────────
+d_model: 64
+d_state: 128
+n_layers: 4
+n_classes: 2          # OR=0, IR=1
+conv_stride: 2
+
+# ── training ──────────────────────────────────────────────────────
+batch_size: 64
+num_workers: 4
+epochs: 50
+lr: 3.0e-4
+weight_decay: 1.0e-4
+grad_clip: 1.0
+scheduler: cosine
+
+# ── loss ──────────────────────────────────────────────────────────
+lambda_kin: 0.0
+kin_variant: cover
+
+# ── ⚠️ XJTU fs_eff assert (D26 mandatory) ─────────────────────────
+fs_eff: 12800.0
+
+# ── experiment ────────────────────────────────────────────────────
+seeds: [0, 1, 2, 3, 4]
+results_dir: results/e3_lobo_leakfree_20260709-205255/dual_nokin

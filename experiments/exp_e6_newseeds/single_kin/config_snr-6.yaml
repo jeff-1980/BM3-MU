@@ -1,0 +1,27 @@
+name: exp_e6_single_kin_snrm6_newseed
+data_dir: data/cwru_12k_de
+channels:
+- DE
+win_len: 2048
+stride: 1024
+val_ratio: 0.2
+batch_size: 64
+num_workers: 4
+d_model: 64
+d_state: 128
+n_layers: 4
+n_classes: 4
+conv_stride: 2
+epochs: 50
+lr: 0.0003
+weight_decay: 0.0001
+grad_clip: 1.0
+scheduler: cosine
+noise_snr_db: -6.0
+lambda_kin: 0.01
+kin_variant: cover
+seeds:
+- 5
+- 6
+- 7
+results_dir: results/exp_e6_single_kin_snrm6_newseed

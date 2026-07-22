@@ -1,0 +1,23 @@
+# BearMamba-3 — core dependencies.
+# Tested on: WSL2 Ubuntu, Python 3.12, CUDA 12.1, RTX A5000 (Ampere, sm_86).
+# For an exact, fully-pinned environment (177 packages) see requirements-freeze.txt.
+#
+# PyTorch must be installed with a CUDA-matched wheel BEFORE the rest of this
+# file, e.g.:
+#   pip install torch==2.11.0 --index-url https://download.pytorch.org/whl/cu121
+#
+# mamba_ssm must be built from source with MAMBA_FORCE_BUILD=TRUE (the PyPI
+# wheel does not include the Mamba-3 module used by this project):
+#   MAMBA_FORCE_BUILD=TRUE pip install "mamba-ssm @ git+https://github.com/state-spaces/mamba.git"
+
+triton>=3.5.0
+tilelang==0.1.8
+causal-conv1d==1.6.1
+
+numpy==2.4.3
+scipy==1.17.1
+pandas==3.0.1
+scikit-learn==1.8.0
+matplotlib==3.10.8
+PyYAML==6.0.1
+tqdm==4.67.3

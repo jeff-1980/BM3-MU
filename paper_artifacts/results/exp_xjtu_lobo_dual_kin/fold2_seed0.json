@@ -1,0 +1,11 @@
+{
+  "fold_tag": "fold2_Bearing3_4",
+  "seed": 0,
+  "best_macro_recall": 0.4774525316455696,
+  "best_macro_f1": 0.48846620801295026,
+  "best_per_class_recall": [
+    0.0,
+    0.9549050632911392
+  ],
+  "elapsed_s": 276.61892080307007
+}

@@ -1,0 +1,9 @@
+arm,macro_f1,macro_recall,path
+dual-BM3 (CE-only),94.90 ± 4.52,93.80 ± 5.58,exp_xjtu_cross_dual_nokin
+dual-BM3 (+Lkin),94.78 ± 4.22,93.73 ± 5.32,exp_xjtu_cross_dual_kin
+dual-BM2,83.54 ± 7.46,81.10 ± 7.72,e1_dual_baselines_20260709-1052/xjtu_cross_dual_bm2
+single-BM3 (CE-only),80.89 ± 5.21,78.17 ± 5.04,exp_xjtu_cross_nokin
+single-BM3 (+Lkin),79.73 ± 7.39,77.37 ± 7.23,exp_xjtu_cross_kin
+single-CNN,41.31 ± 0.57,50.59 ± 0.27,exp_mext_e13_1dcnn_xjtu_cross
+single-BM2,n/a,n/a,NOT FOUND
+dual-CNN,n/a,n/a,NOT FOUND

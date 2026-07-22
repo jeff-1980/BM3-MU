@@ -1,0 +1,34 @@
+name: exp_e1_cnn1d_attnfusion_snr0
+backbone: cnn1d_attnfusion
+
+# ── data ──────────────────────────────────────────────────────────
+# 通道/数据段逐字仿 experiments/exp_mext_e14_1dcnn_cwru_dual/config_snr0.yaml
+data_dir: data/cwru_12k_de
+channels: [DE, FE]
+win_len: 2048
+stride: 1024
+val_ratio: 0.2
+label_mode: 4class
+batch_size: 64
+num_workers: 4
+
+# ── model ─────────────────────────────────────────────────────────
+d_model: 64
+n_layers: 4
+n_classes: 4
+conv_stride: 2
+
+# ── training ──────────────────────────────────────────────────────
+epochs: 50
+lr: 3.0e-4
+weight_decay: 1.0e-4
+grad_clip: 1.0
+scheduler: cosine
+
+# ── loss ──────────────────────────────────────────────────────────
+noise_snr_db: 0.0
+lambda_kin: 0.0     # cnn1d family: no L_kin support (see cnn1d.py docstring)
+
+# ── experiment ────────────────────────────────────────────────────
+seeds: [0, 1, 2, 3, 4]
+results_dir: results/exp_e1_cnn1d_attnfusion_snr0

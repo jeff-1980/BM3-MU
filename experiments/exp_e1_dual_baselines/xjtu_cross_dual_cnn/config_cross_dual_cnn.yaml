@@ -1,0 +1,42 @@
+name: exp_e1b_xjtu_cross_dual_cnn
+mode: cross
+backbone: cnn1d
+# 通道/数据段逐字仿 experiments/exp_e1_dual_baselines/xjtu_cross_dual_bm2/config_cross_dual_bm2.yaml
+# （本身逐字仿 experiments/exp_xjtu/config_cross_dual_nokin.yaml）；
+# 唯一改动 = backbone: mamba2 -> cnn1d。cnn1d 不用 d_state，故省略该字段
+# （与 experiments/exp_mext_e13_1dcnn_xjtu_cross/config.yaml 的既有 cnn1d 配置惯例一致）。
+
+# ── data ──────────────────────────────────────────────────────────
+data_root: ~/data_xjtu/XJTU-SY_Bearing_Datasets
+train_condition: "37.5Hz11kN"   # Cond2: 2250rpm
+test_condition:  "40Hz10kN"     # Cond3: 2400rpm
+window_size: 2048
+n_sensors: 2          # horizontal + vertical (B4-5 dual-channel)
+# ⚠️ Cond2 OR:IR ≈ 7.4:1 → DataLoader uses WeightedRandomSampler
+
+# ── model ─────────────────────────────────────────────────────────
+d_model: 64
+n_layers: 4
+n_classes: 2          # OR=0, IR=1
+conv_stride: 2
+
+# ── training ──────────────────────────────────────────────────────
+batch_size: 64
+num_workers: 4
+epochs: 50
+lr: 3.0e-4
+weight_decay: 1.0e-4
+grad_clip: 1.0
+scheduler: cosine
+
+# ── loss ──────────────────────────────────────────────────────────
+# cnn1d 不支持 L_kin（exp_xjtu/train.py L202: do_kin 排除 cnn1d/transformer1d/mamba2）
+lambda_kin: 0.0
+kin_variant: cover
+
+# ── ⚠️ XJTU fs_eff assert (D26 mandatory) ─────────────────────────
+fs_eff: 12800.0
+
+# ── experiment ────────────────────────────────────────────────────
+seeds: [0, 1, 2, 3, 4]
+results_dir: results/exp_e1b_xjtu_cross_dual_cnn

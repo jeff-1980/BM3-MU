@@ -1,0 +1,39 @@
+name: exp_e1_dual_bm2_snrm4
+backbone: mamba2
+
+# ── data ──────────────────────────────────────────────────────────
+# 通道/数据段逐字仿 experiments/exp_b2_dual_sensor/config_dual_nokin.yaml
+data_dir: data/cwru_12k_de
+channels: [DE, FE]         # dual-sensor: drive-end + fan-end
+win_len: 2048
+stride: 1024
+val_ratio: 0.2
+batch_size: 64
+num_workers: 4
+
+# ── model ─────────────────────────────────────────────────────────
+d_model: 64
+d_state: 128
+n_layers: 4
+n_classes: 4
+conv_stride: 2
+# n_sensors auto-inferred from len(channels) = 2 (exp01 train.py build_model L89)
+
+# ── training ──────────────────────────────────────────────────────
+epochs: 50
+lr: 3.0e-4
+weight_decay: 1.0e-4
+grad_clip: 1.0
+scheduler: cosine
+
+# ── loss ──────────────────────────────────────────────────────────
+noise_snr_db: -4.0
+# Mamba-2 无 RoPE/theta/DT 激活，L_kin 架构不支持（D19）；
+# exp01_cwru_baseline/train.py L195: do_kin = (lambda_kin>0) and (backbone!="mamba2")
+# 因此本臂只跑 nokin，不新写 kin 配置。
+lambda_kin: 0.0
+kin_variant: cover
+
+# ── experiment ────────────────────────────────────────────────────
+seeds: [0, 1, 2, 3, 4]
+results_dir: results/exp_e1_dual_bm2_snrm4
